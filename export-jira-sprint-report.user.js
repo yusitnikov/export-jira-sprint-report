@@ -2,7 +2,7 @@
 // @name        Jira sprint report download
 // @description User Script for exporting Jira Sprint Reports as Excel files
 // @author      yusitnikov
-// @version     1.0
+// @version     1.1
 // @updateURL   https://github.com/yusitnikov/export-jira-sprint-report/raw/master/export-jira-sprint-report.user.js
 // @match       https://*.atlassian.net/*
 // @run-at      document-end
@@ -23,13 +23,12 @@ setInterval(function() {
     }
 
     // Check that we didn't add the Export button yet
-    var $actions = $('#ghx-sprint-actions-content').find('ul');
-    if ($actions.find('li').size() !== 1) {
+    if ($('#ys-export-sprint-report').size()) {
         return;
     }
 
     // Add the export button
-    var $li = $('<li><a download="Sprint Report.xlsx" href="#">Export to Excel</a></li>'),
+    var $li = $('<li id="ys-export-sprint-report"><a download="Sprint Report.xlsx" href="#">Export to Excel</a></li>'),
         $a = $li.find('a');
     $li.find('a').click(function() {
         function map(a, f) {
@@ -74,5 +73,5 @@ setInterval(function() {
             return false;
         }
     });
-    $actions.append($li);
+    $('#ghx-sprint-actions-content').find('ul').append($li);
 }, 500);
