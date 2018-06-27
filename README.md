@@ -3,6 +3,9 @@ User Script for exporting Jira Sprint Reports as Excel files
 
 ## Release Notes
 
+### v1.2
+- Add "Link" and "Added After Sprint Start" columns
+
 ### v1.1
 - Fix checking for export button presence
 

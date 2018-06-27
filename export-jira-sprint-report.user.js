@@ -2,7 +2,7 @@
 // @name        Jira sprint report download
 // @description User Script for exporting Jira Sprint Reports as Excel files
 // @author      yusitnikov
-// @version     1.1
+// @version     1.2
 // @updateURL   https://github.com/yusitnikov/export-jira-sprint-report/raw/master/export-jira-sprint-report.user.js
 // @match       https://*.atlassian.net/*
 // @run-at      document-end
@@ -54,13 +54,20 @@ setInterval(function() {
                                 array: map(
                                     // table -> thead/tbody -> tr
                                     $table.children().children(),
-                                    function(tr) {
-                                        return map(
-                                            $(tr).children(),
+                                    function(tr, trIndex) {
+                                        var $td = $(tr).children();
+                                        var cells = map(
+                                            $td,
                                             function(td) {
                                                 return $(td).text().trim();
                                             }
                                         );
+                                        var addedAfterSprint = cells[0].endsWith(' *');
+                                        cells.splice(1, 0, trIndex === 0 ? 'Link' : location.protocol + '//' + location.host + '/' + $td.first().find('a').attr('href'), trIndex === 0 ? 'Added After Sprint Start' : addedAfterSprint);
+                                        if (addedAfterSprint) {
+                                            cells[0] = cells[0].substr(0, cells[0].length - 2);
+                                        }
+                                        return cells;
                                     }
                                 )
                             }
