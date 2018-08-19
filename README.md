@@ -3,6 +3,10 @@ User Script for exporting Jira Sprint Reports as Excel files
 
 ## Release Notes
 
+### v1.3
+- Move "Export" button out of DD
+- Add the button to "Burndown Chart" report
+
 ### v1.2
 - Add "Link" and "Added After Sprint Start" columns
 
@@ -17,5 +21,3 @@ User Script for exporting Jira Sprint Reports as Excel files
 - Install the script by going to the following link: https://github.com/yusitnikov/export-jira-sprint-report/raw/master/export-jira-sprint-report.user.js
 
 ## Enjoy!
-
-![Screenshot](https://i.gyazo.com/c0c3681d4a4ae5ed0e3f559c1c969ce4.png)
